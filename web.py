@@ -25,7 +25,7 @@ st.set_page_config(
 
 # 训练模型使用的特征（顺序必须与训练一致）
 FEATURES = [
-    '从发血到输血时间', '是否有原发性血液疾病', '血液储存时间', '有无不良反应史', '过敏史', '科室'
+    '从发血到输血时间','是否有原发性血液疾病','年龄','TT','血液储存时间','有无不良反应史','过敏史','科室'
 ]
 
 # 英文显示标签（仅影响界面显示，不影响编码）
@@ -100,9 +100,10 @@ def main():
         for k in FEATURES:
             st.markdown(f"- {FEATURE_LABELS.get(k,k)}: {FEATURE_DESC.get(k,'')}")
 
-    # 归一化用的原始分值范围（固定值；UI 不展示）
-    SCORE_RAW_MIN = 0
-    SCORE_RAW_MAX = 39
+    AGE_MIN = 1
+    AGE_MAX = 95
+    TT_MIN = 0
+    TT_MAX = 70
 
     # Load model
     try:
@@ -118,6 +119,7 @@ def main():
 
     # 三列布局：分组输入控件
     col1, col2, col3 = st.columns(3)
+    '从发血到输血时间', '是否有原发性血液疾病', '年龄', 'TT', '血液储存时间', '有无不良反应史', '过敏史', '科室'
 
     with col1:
         从发血到输血时间 = st.selectbox(
@@ -126,14 +128,30 @@ def main():
         是否有原发性血液疾病 = st.selectbox(
             FEATURE_LABELS['是否有原发性血液疾病'], YES_NO_OPTIONS, format_func=YES_NO_FMT
         )
+        年龄 = st.slider(
+            "年龄",
+            min_value= AGE_MIN,
+            max_value=int(AGE_MAX),
+            value=int((AGE_MIN + AGE_MAX) // 2),
+            step=1,
+        )
+
 
     with col2:
+        TT = st.selectbox(
+            "TT",
+            min_value=TT_MIN,
+            max_value=TT_MAX,
+            value=int((TT_MIN + TT_MAX) // 2),
+            step=1,
+        )
         血液储存时间 = st.selectbox(
             FEATURE_LABELS['血液储存时间'], LEVEL4_OPTIONS, format_func=LEVEL4_FMT
         )
         有无不良反应史 = st.selectbox(
             FEATURE_LABELS['有无不良反应史'], YES_NO_OPTIONS, format_func=YES_NO_FMT
         )
+
 
     with col3:
         过敏史 = st.selectbox(
@@ -143,10 +161,11 @@ def main():
             FEATURE_LABELS['科室'], LEVEL6_OPTIONS, format_func=LEVEL6_FMT
         )
 
+
     if st.button("Predict"):
         # 按训练顺序组装输入行
         row = [
-            从发血到输血时间, 是否有原发性血液疾病, 血液储存时间, 有无不良反应史, 过敏史, 科室
+            从发血到输血时间, 是否有原发性血液疾病, 年龄, TT, 血液储存时间, 有无不良反应史, 过敏史, 科室
         ]
         input_df = pd.DataFrame([row], columns=FEATURES)
 
