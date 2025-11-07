@@ -138,7 +138,7 @@ def main():
 
 
     with col2:
-        TT = st.selectbox(
+        TT = st.slider(
             "TT",
             min_value = TT_MIN,
             max_value = TT_MAX,
