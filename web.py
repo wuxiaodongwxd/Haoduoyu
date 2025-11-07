@@ -104,7 +104,7 @@ def main():
 
     AGE_MIN = 1
     AGE_MAX = 95
-    TT_MIN = 0.1
+    TT_MIN = 1
     TT_MAX = 70
 
     # Load model
@@ -142,10 +142,10 @@ def main():
     with col2:
         TT = st.slider(
             "TT",
-            min_value = TT_MIN,
-            max_value = TT_MAX,
+            min_value = int(TT_MIN),
+            max_value = int(TT_MAX),
             value=int(TT_MIN),
-            step=1
+            step=1,
         )
         TT_raw = TT
         血液储存时间 = st.selectbox(
