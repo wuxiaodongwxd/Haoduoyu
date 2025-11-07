@@ -79,6 +79,8 @@ def load_model():
 def main():
     st.sidebar.title("Prediction Model (Random Forest)")
     st.sidebar.markdown(
+        "- Predicts risk of adverse reactions to blood transfusion occur after the transfusion using 8 features.\n"
+        "- Binary classification model (Random Forest)."
     )
 
     # 侧栏：展开的“特征与说明”
