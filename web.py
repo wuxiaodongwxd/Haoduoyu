@@ -102,7 +102,7 @@ def main():
 
     AGE_MIN = 1
     AGE_MAX = 95
-    TT_MIN = 1
+    TT_MIN = 0.1
     TT_MAX = 70
 
     # Load model
@@ -131,9 +131,10 @@ def main():
             "年龄",
             min_value= int(AGE_MAX),
             max_value=int(AGE_MAX),
-            value=int((AGE_MIN + AGE_MAX) // 2),
-            step=1,
+            value=int(AGE_MIN),
+            step=1
         )
+        年龄_raw = 年龄
 
 
     with col2:
@@ -141,9 +142,10 @@ def main():
             "TT",
             min_value = int(TT_MIN),
             max_value = int(TT_MAX),
-            value= int((TT_MIN + TT_MAX) // 2),
-            step=0.0001,
+            value= int(TT_MIN),
+            step=0.1
         )
+        TT_raw = TT
         血液储存时间 = st.selectbox(
             FEATURE_LABELS['血液储存时间'], LEVEL4_OPTIONS, format_func=LEVEL4_FMT
         )
@@ -164,7 +166,7 @@ def main():
     if st.button("Predict"):
         # 按训练顺序组装输入行
         row = [
-            从发血到输血时间, 是否有原发性血液疾病, 年龄, TT, 血液储存时间, 有无不良反应史, 过敏史, 科室
+            从发血到输血时间, 是否有原发性血液疾病, 年龄_raw, TT_raw, 血液储存时间, 有无不良反应史, 过敏史, 科室
         ]
         input_df = pd.DataFrame([row], columns=FEATURES)
 
