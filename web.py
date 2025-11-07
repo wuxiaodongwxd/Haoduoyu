@@ -140,12 +140,10 @@ def main():
 
 
     with col2:
-        TT = st.slider(
+        TT = st.number_input(
             "TT",
-            min_value = int(TT_MIN),
-            max_value = int(TT_MAX),
-            value=int(TT_MIN),
-            step=1,
+            min_value = TT_MIN,
+            max_value = TT_MAX
         )
         TT_raw = TT
         血液储存时间 = st.selectbox(
