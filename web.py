@@ -31,6 +31,8 @@ FEATURES = [
 # 英文显示标签（仅影响界面显示，不影响编码）
 FEATURE_LABELS = {
     '从发血到输血时间':'The time from blood release to blood transfusion' ,
+    '年龄':'Age',
+    'TT':'TT',
     '是否有原发性血液疾病':'Is there any primary blood disease?',
     '血液储存时间':'Blood storage time',
     '有无不良反应史': 'Have any adverse reactions occurred?',
@@ -140,10 +142,10 @@ def main():
     with col2:
         TT = st.slider(
             "TT",
-            min_value = int(TT_MIN),
-            max_value = int(TT_MAX),
-            value= int(TT_MIN),
-            step=0.1
+            min_value = TT_MIN,
+            max_value = TT_MAX,
+            value=int(TT_MIN),
+            step=1
         )
         TT_raw = TT
         血液储存时间 = st.selectbox(
