@@ -130,7 +130,7 @@ def main():
         )
         年龄 = st.slider(
             "年龄",
-            min_value= AGE_MIN,
+            min_value= int(AGE_MAX),
             max_value=int(AGE_MAX),
             value=int((AGE_MIN + AGE_MAX) // 2),
             step=1,
@@ -140,9 +140,9 @@ def main():
     with col2:
         TT = st.selectbox(
             "TT",
-            min_value=TT_MIN,
-            max_value=TT_MAX,
-            value=int((TT_MIN + TT_MAX) // 2),
+            min_value = TT_MIN,
+            max_value = TT_MAX,
+            value= (TT_MIN + TT_MAX) / 2,
             step=1,
         )
         血液储存时间 = st.selectbox(
