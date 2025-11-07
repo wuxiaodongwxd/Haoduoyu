@@ -139,9 +139,9 @@ def main():
     with col2:
         TT = st.slider(
             "TT",
-            min_value = TT_MIN,
-            max_value = TT_MAX,
-            value= (TT_MIN + TT_MAX) // 2,
+            min_value = int(TT_MIN),
+            max_value = int(TT_MAX),
+            value= int((TT_MIN + TT_MAX) // 2),
             step=0.0001,
         )
         血液储存时间 = st.selectbox(
