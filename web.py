@@ -102,7 +102,7 @@ def main():
 
     AGE_MIN = 1
     AGE_MAX = 95
-    TT_MIN = 0
+    TT_MIN = 1
     TT_MAX = 70
 
     # Load model
@@ -119,7 +119,6 @@ def main():
 
     # 三列布局：分组输入控件
     col1, col2, col3 = st.columns(3)
-    '从发血到输血时间', '是否有原发性血液疾病', '年龄', 'TT', '血液储存时间', '有无不良反应史', '过敏史', '科室'
 
     with col1:
         从发血到输血时间 = st.selectbox(
@@ -142,8 +141,8 @@ def main():
             "TT",
             min_value = TT_MIN,
             max_value = TT_MAX,
-            value= (TT_MIN + TT_MAX) / 2,
-            step=1,
+            value= (TT_MIN + TT_MAX) // 2,
+            step=0.0001,
         )
         血液储存时间 = st.selectbox(
             FEATURE_LABELS['血液储存时间'], LEVEL4_OPTIONS, format_func=LEVEL4_FMT
