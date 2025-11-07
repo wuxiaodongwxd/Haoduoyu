@@ -71,7 +71,7 @@ LEVEL4_FMT = lambda x: {0: "Less than 2 weeks", 1: "More than 2 weeks", 2: "More
 # 加载模型；为部分环境提供 numpy._core 兼容兜底
 @st.cache_resource
 def load_model():
-    model_path = 'lasi_result.pkl'
+    model_path = 'model.pkl'
     try:
         return joblib.load(model_path)
     except ModuleNotFoundError as e:
